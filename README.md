@@ -1,6 +1,6 @@
 # Valve Basestation integration for Homeassistant
 
-Read and manage power states for your Valve Index® Base Stations (also referred to as 'Lighthouse V2') through [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy).
+Read and manage power states for your HTC Vive / Valve Index® Base Stations (also referred to as 'Lighthouse V1/V2') through [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy).
 
 ![](https://jari.lol/TYc7q1qt9E.png)  
 

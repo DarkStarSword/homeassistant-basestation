@@ -6,9 +6,12 @@ from homeassistant.components import bluetooth
 import asyncio
 
 from .const import (
-    PWR_CHARACTERISTIC,
-    PWR_ON,
-    PWR_STANDBY,
+    PWR_CHARACTERISTIC_V1,
+    PWR_CHARACTERISTIC_V2,
+    PWR_ON_V1,
+    PWR_ON_V2,
+    PWR_STANDBY_V1,
+    PWR_STANDBY_V2,
 )
 
 
@@ -61,15 +64,24 @@ class BasestationSwitch(SwitchEntity):
 
     async def async_turn_on(self):
         async with BleakClient(self.get_ble_device()) as client:
-            await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_ON)
+            #try:
+            #    await client.write_gatt_char(PWR_CHARACTERISTIC_V2, PWR_ON_V2)
+            #except BleakError: # Index power characteristic failed, try falling back to Vive
+            await client.write_gatt_char(PWR_CHARACTERISTIC_V1, PWR_ON_V1)
 
     async def async_turn_off(self):
         async with BleakClient(self.get_ble_device()) as client:
-            await client.write_gatt_char(PWR_CHARACTERISTIC, PWR_STANDBY)
+            #try:
+            #    await client.write_gatt_char(PWR_CHARACTERISTIC_V2, PWR_STANDBY_V2)
+            #except BleakError: # Index power characteristic failed, try falling back to Vive
+            await client.write_gatt_char(PWR_CHARACTERISTIC_V1, PWR_STANDBY_V1)
 
     async def async_update(self):
         async with BleakClient(self.get_ble_device()) as client:
-            self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC) != PWR_STANDBY
+            #try:
+            #    self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC_V2) != PWR_STANDBY_V2
+            #except BleakError: # Index power characteristic failed, try falling back to Vive
+            self._is_on = await client.read_gatt_char(PWR_CHARACTERISTIC_V1) != PWR_STANDBY_V1
 
     def get_ble_device(self):
         return bluetooth.async_ble_device_from_address(self._hass, self._mac)

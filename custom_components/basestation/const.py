@@ -1,6 +1,9 @@
-"""Constants for the Valve Index Basestation integration."""
+"""Constants for the HTC Vive / Valve Index Basestation integration."""
 
 DOMAIN = "basestation"
-PWR_CHARACTERISTIC = "00001525-1212-EFDE-1523-785FEABCD124"
-PWR_ON = b"\x01"
-PWR_STANDBY = b"\x00"
+PWR_CHARACTERISTIC_V1 = "0000CB01-0000-1000-8000-00805F9B34FB"
+PWR_CHARACTERISTIC_V2 = "00001525-1212-EFDE-1523-785FEABCD124"
+PWR_ON_V1 = b"\x12\x00\x00\x28\xFF\xFF\xFF\xFF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+PWR_ON_V2 = b"\x01"
+PWR_STANDBY_V1 = b"\x12\x01\x00\x28\xFF\xFF\xFF\xFF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+PWR_STANDBY_V2 = b"\x00"

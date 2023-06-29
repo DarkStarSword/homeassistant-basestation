@@ -1,6 +1,6 @@
 {
   "domain": "basestation",
-  "name": "Valve Index Basestation",
+  "name": "Valve Vive/Index Basestation",
   "version": "0.0.1",
   "config_flow": false,
   "documentation": "https://github.com/jariz/homeassistant-basestation",
